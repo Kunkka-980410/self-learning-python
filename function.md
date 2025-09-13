@@ -144,3 +144,64 @@ def outer():
 
 outer() #输出10
 ```
+
+---
+### 匿名函数
+匿名函数在 Python 中是通过 lambda 关键字创建的，它是一种没有名字的小型函数，通常用于一次性、简洁的操作，非常适合配合像 map()、filter()、sorted() 这样的函数使用
+🧪 基本语法
+```python
+lambda 参数1, 参数2, ... : 表达式
+```
+参数可以有多个
+
+表达式只能有一个（不能写多行逻辑）
+
+返回值就是表达式的结果
+
+✅ 示例讲解
+1. 最简单的匿名函数
+```python
+f = lambda x: x + 1
+print(f(5))  # 输出：6
+```
+2. 多参数
+```python
+add = lambda x, y: x + y
+print(add(3, 4))  # 输出：7
+```
+3. 用在 map() 中
+```python
+nums = [1, 2, 3, 4]
+squared = list(map(lambda x: x**2, nums))
+print(squared)  # 输出：[1, 4, 9, 16]
+```
+
+关于map函数的一点说明
+🧪 基本语法
+```python
+map(function, iterable)
+```
+function：你要应用的函数，可以是普通函数，也可以是匿名函数（lambda）
+
+iterable：一个可迭代对象，比如列表、元组、集合等
+
+返回值是一个 map 对象（迭代器），通常我们会用 list() 把它转换成列表。
+**总的来说就是把 function 的处理结果 应用到 iterable 的每个元素上，并返回一个新的 迭代器对象。**
+
+
+4. 用在 filter()中
+```python
+nums = [1, 2, 3, 4, 5]
+even = list(filter(lambda x: x % 2 == 0, nums))
+print(even)  # 输出：[2, 4]
+```
+5. 用在 sorted() 中自定义排序
+```python
+names = ['Tom', 'Alexander', 'Bob']
+sorted_names = sorted(names, key=lambda x: len(x))
+print(sorted_names)  # 输出：['Tom', 'Bob', 'Alexander']
+```
+⚠️ 注意事项
+lambda 适合写简单逻辑，不推荐处理复杂流程。
+
+如果逻辑太复杂，建议使用 def 定义普通函数，更清晰易维护。
