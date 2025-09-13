@@ -205,3 +205,43 @@ print(sorted_names)  # 输出：['Tom', 'Bob', 'Alexander']
 lambda 适合写简单逻辑，不推荐处理复杂流程。
 
 如果逻辑太复杂，建议使用 def 定义普通函数，更清晰易维护。
+
+
+---
+### 递归函数
+递归函数是编程中一种非常强大的技巧，它的核心思想是：函数自己调用自己，直到满足某个终止条件为止。听起来像“套娃”，但其实非常实用，尤其在处理分治问题、树结构、数学计算等场景时
+🧠 什么是递归函数？
+递归函数就是在函数内部调用自己本身的函数。它通常包含两个部分：
+
+终止条件（Base Case）：防止无限调用，必须有！
+
+递归调用（Recursive Case）：函数调用自身，逐步逼近终止条件。
+
+✅ 示例：计算阶乘
+```python
+def factorial(n):
+    if n == 1:         # 终止条件
+        return 1
+    else:
+        return n * factorial(n - 1)  # 递归调用
+```
+
+调用 factorial(5) 的过程如下：
+
+```代码
+factorial(5)
+→ 5 * factorial(4)
+→ 5 * 4 * factorial(3)
+→ 5 * 4 * 3 * factorial(2)
+→ 5 * 4 * 3 * 2 * factorial(1)
+→ 5 * 4 * 3 * 2 * 1 = 120
+```
+
+🧩 再看一个例子：斐波那契数列
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+```
