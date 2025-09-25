@@ -115,6 +115,34 @@ head = next(i)
 🧠 为什么它不是“识别”表头？
 `next(i)` 不具备判断“这是不是表头”的能力。
 
+---
+next(2)是跳过开头2行吗
+不是，next(2) 在 Python 中是错误的语法，它不会跳过开头两行，甚至会直接报错：
+
+```python
+TypeError: 'int' object is not an iterator
+```
+✅ 正确的方式：用两次 next() 来跳过前两行
+```python
+f = open('data.txt')
+next(f)  # 跳过第1行
+next(f)  # 跳过第2行
+for line in f:
+    print(line.strip())  # 从第3行开始处理
+```
+或者用循环更优雅地跳过任意行数：
+
+```python
+f = open('data.txt')
+for _ in range(2):  # 跳过前两行
+    next(f)
+for line in f:
+    print(line.strip())
+```
+🧠 为什么不能用 next(2)？
+`next()` 的参数是一个迭代器（比如文件对象），不是数字。
+
+如果你写 next(2)，Python 会尝试从数字 2 中取下一个元素，但数字不是迭代器 → 报错。
 它只是顺序地取出迭代器中的下一个元素。
 
 是你作为程序员知道第一行是表头，所以用 `next(i)` 把它取出来、跳过。
