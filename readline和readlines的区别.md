@@ -61,6 +61,7 @@ with open('output.txt', 'w') as f:
 或者提前在列表中加好换行符。
 
 ---
+### `mode=a`
 在 Python 中，`open(file, mode='a')` 的 `mode='a'` 表示以追加模式（append）打开文件。具体含义如下：
 
 📌 `mode='a'` 的特点
