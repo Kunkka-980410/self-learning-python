@@ -245,3 +245,148 @@ def fibonacci(n):
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
 ```
+---
+## 调用函数
+基本调用方法
+1. 无参数函数
+```python
+# 定义函数
+def say_hello():
+    print("你好！")
+
+# 调用函数
+say_hello()  # 输出: 你好！
+```
+2. 带参数函数
+```python
+# 定义函数
+def greet(name):
+    print(f"你好，{name}！")
+
+# 调用函数
+greet("小明")  # 输出: 你好，小明！
+greet("小红")  # 输出: 你好，小红！
+```
+3. 带返回值的函数
+```python
+# 定义函数
+def add(a, b):
+    return a + b
+
+# 调用函数并接收返回值
+result = add(3, 5)
+print(result)  # 输出: 8
+
+# 或者直接使用返回值
+print(add(10, 20))  # 输出: 30
+```
+完整的调用示例
+```python
+# 定义几个不同类型的函数
+def show_info():
+    print("=== 用户信息 ===")
+
+def calculate_bmi(weight, height):
+    """计算BMI指数"""
+    bmi = weight / (height ** 2)
+    return bmi
+
+def create_email(username, domain="gmail.com"):
+    """生成邮箱地址"""
+    return f"{username}@{domain}"
+
+# 调用函数
+show_info()  # 调用无参数函数
+
+bmi_result = calculate_bmi(70, 1.75)  # 调用带参数函数
+print(f"您的BMI是: {bmi_result:.2f}")
+
+email = create_email("zhangsan")  # 使用默认参数
+print(f"邮箱: {email}")
+
+email2 = create_email("lisi", "qq.com")  # 覆盖默认参数
+print(f"邮箱: {email2}")
+```
+输出结果：
+
+```text
+=== 用户信息 ===
+您的BMI是: 22.86
+邮箱: zhangsan@gmail.com
+邮箱: lisi@qq.com
+```
+---
+常见调用方式
+1. 位置参数调用
+```python
+def introduce(name, age, city):
+    print(f"我叫{name}，今年{age}岁，来自{city}")
+
+introduce("张三", 25, "北京")  # 参数按顺序传递
+```
+2. 关键字参数调用
+```python
+introduce(name="李四", age=30, city="上海")  # 明确指定参数名
+introduce(age=28, city="广州", name="王五")  # 顺序可以打乱
+```
+3. 混合使用
+```python
+introduce("赵六", age=35, city="深圳")  # 位置参数必须在关键字参数之前
+```
+---
+**重要注意事项**
+函数必须先定义后调用
+
+```python
+# 错误示例
+say_hello()  # NameError: name 'say_hello' is not defined
+
+def say_hello():
+    print("Hello!")
+```
+参数数量必须匹配
+
+```python
+def multiply(a, b):
+    return a * b
+
+# multiply(5)        # 错误：缺少1个参数
+# multiply(1, 2, 3)  # 错误：多出1个参数
+multiply(3, 4)       # 正确：返回12
+```
+函数名区分大小写
+
+```python
+def my_function():
+    print("这是一个函数")
+
+my_function()  # 正确
+# My_Function()  # 错误：函数名大小写不匹配
+```
+实际应用示例
+```python
+# 游戏角色相关的函数
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.level = 1
+
+def level_up(player):
+    """角色升级"""
+    player.level += 1
+    print(f"{player.name} 升级了！当前等级: {player.level}")
+    return player.level
+
+def check_status(player):
+    """检查角色状态"""
+    print(f"角色: {player.name}")
+    print(f"等级: {player.level}")
+
+# 创建角色并调用函数
+mia = Player("mia")
+check_status(mia)  # 调用状态检查函数
+
+new_level = level_up(mia)  # 调用升级函数
+print(f"新等级: {new_level}")
+```
+总结：调用函数的基本语法就是 函数名(参数1, 参数2, ...)，根据函数定义时的参数要求来传递相应的参数即可。
